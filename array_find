@@ -1,0 +1,113 @@
+import java.util.*;
+class array_find
+{
+    public static void main ()
+    {
+        ///initialization
+        Scanner in= new Scanner(System.in);
+        int ran, opt,pos,temp, cnt=0, flag=0,size;
+        System.out.println("Enter size of array");
+        size=in.nextInt();
+        if(size<=0 )
+        {
+            System.out.println("Please enter a valid number");
+            System.exit(-1);
+        }
+        int a[] = new int [size+1];
+        
+        ///filling up of array
+        System.out.println("Enter 1 to enter numbers manually or 0 to automate");
+        opt=in.nextInt();
+        switch(opt)
+        {
+            ///enter numbers manually
+            case 1: System.out.println("Enter numbers manually");
+            for(int i=0; i<size; i++)
+            {
+                a[i]=in.nextInt();
+            }
+            break;
+            
+            ///fill array  automatically
+            case 0: System.out.println("Filled array ");
+            for(int i=0; i<size; i++)
+            {
+                a[i]=(int)(Math.random()*(size-1))+1;
+            }
+            break;
+            
+            default:System.out.println("Error");
+            System.exit(-1);
+        }
+        System.out.println();
+        System.out.println();
+        ///printing array
+        System.out.println("Array is:");
+        for(int i=0; i<size; i++)
+        {
+            System.out.print(a[i]+" ");
+        }
+        System.out.println();
+        System.out.println();
+        
+        ///sorting array
+        for(int i=0; i<(size-1); i++)
+        {
+            pos=i;
+            for(int j=(i+1); j<size; j++)
+            {
+                if(a[j]>a[i])
+                {
+                    pos=j;
+                }
+            }
+            temp=a[i];
+            a[i]=a[pos];
+            a[pos]=temp;
+        }
+        
+        
+        ///checking for dublicate numbers
+        for(int i=0; i<(size-1); i++)
+        {
+            cnt=0;
+            if(a[i]==a[i+1])
+            {
+                for(int j=(i+2); j<size; j++)
+                {
+                    if(a[j]==a[i])
+                    {
+                        cnt++;
+                    }
+                }
+                if(cnt==0)
+                {
+                    System.out.println(a[i]+" is dublicate");
+                }
+                flag++;
+            }
+        }
+        if(flag==0)
+        {
+            System.out.println("no dublicate number found");
+        }
+        System.out.println();
+        
+        ///end of program
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println("Enter 1 to replay or any other number to exit");
+        opt=in.nextInt();
+        if(opt==1)
+        {
+            System.out.print('\f');
+            System.out.flush();
+            main();
+        }
+        else
+        {
+            System.out.print('\f');
+            System.out.flush();
+            System.exit(-1);
+        }
+    }
+}
